@@ -18,6 +18,16 @@ h1.title{
   font-family: 'Lora', serif;
   font-size:28px;
 }
+
+p {
+  color:white;
+  font-size: 14px;
+}
+div#graphButtons{
+  float:left;
+}
+
+
 .choice_button {
   width: 63px;
   height: 63px;
