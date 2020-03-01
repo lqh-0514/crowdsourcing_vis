@@ -1,4 +1,3 @@
-<!doctype html>
 <!DOCTYPE html>
 <html>
 <head>
@@ -17,6 +16,11 @@
         basemapJSON = JSON.parse($.ajax({'url': "../static/landing_page/base_map.geojson", 'async': false}).responseText);
         ratingJSON = JSON.parse($.ajax({'url':"../static/landing_page/street_rating.geojson",'async':false}).responseText);
         console.log(basemapJSON);
-      </script>
+    </script>
+    <h1 class="title">StreetScape Vis</h1>
+    <div id="graphButtons">
+      <button type="button" class="utility-button" id="foldGraphDiv">Select Two Streets</button>
+      <!-- <button type="button" class="utility-button" id="normalizeBar">DENORMALIZE BAR GRAPH</button> -->
+    </div>
 </body>
 </html>

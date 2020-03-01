@@ -1,3 +1,23 @@
+body {
+  background-color: black;
+  padding-left: 10px;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+
+button.utility-button{
+  color:white;
+  border:1px solid white;
+  border-radius: 3px;
+  padding:5px;
+  background-color: transparent;
+  margin-bottom: 10px;
+}
+h1.title{
+  color: white;
+  font-family: 'Lora', serif;
+  font-size:28px;
+}
 .choice_button {
   width: 63px;
   height: 63px;
