@@ -1,0 +1,83 @@
+{% extends "layout.html" %}
+
+{% block nav %}
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="row" style = "margin-bottom: 15px; margin-top: 15px">
+
+            <div class="col-sm-3">
+            </div>
+            <div class="col-sm-6" >
+                <form method="POST" action="">
+                    {{ form.hidden_tag() }}
+
+                    <div class="form-group">
+                            <b>{{ form.text.label(class="form-control-label form-control-lg") }}</b>
+                        <b>选择因素1</b>
+                        <div class="form-group">
+                            {% if form.properties_1.errors %}
+                            {{ form.properties_1(class="form-control  form-control-lg is-invalid") }}
+                            <div class="invalid-feedback">
+                                {% for error in form.properties_1.errors %}
+                                <span>{{ error }}</span>
+                                {% endfor %}
+                            </div>
+                            {% else %}
+                            {{ form.properties_1(class="form-control form-control-lg ") }}
+                            {% endif %}
+                        </div>
+                        <b>选择因素2</b>
+                        <div class="form-group">
+                            {% if form.properties_2.errors %}
+                            {{ form.properties_2(class="form-control form-control-lg is-invalid") }}
+                            <div class="invalid-feedback">
+                                {% for error in form.properties_2.errors %}
+                                <span>{{ error }}</span>
+                                {% endfor %}
+                            </div>
+                            {% else %}
+                            {{ form.properties_2(class="form-control  form-control-lg") }}
+                            {% endif %}
+                        </div>
+                        <b>选择因素3</b>
+                        <div class="form-group">
+                            {% if form.properties_3.errors %}
+                            {{ form.properties_3(class="form-control form-control-lg is-invalid") }}
+                            <div class="invalid-feedback">
+                                {% for error in form.properties_3.errors %}
+                                <span>{{ error }}</span>
+                                {% endfor %}
+                            </div>
+                            {% else %}
+                            {{ form.properties_3(class="form-control form-control-lg ") }}
+                            {% endif %}
+                        </div>
+
+                        <br></br>
+
+                        <div class="form-group">
+                            <b>{{ form.wechat.label(class="form-control-label form-control-lg") }}</b>
+                            <style>
+                                #tmall2 {
+                                    max-width: 30%;
+                                      }
+                            </style>
+                            <img src="static/tmall.jpeg" id="tmall2"></img>
+                            {{ form.wechat(class="form-control form-control-lg ") }}
+                        </div>
+
+                        <div id="submit" class="form-group" >
+                                {{ form.submit(class="btn btn-outline-info") }}
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="col-sm-3">
+            </div>
+
+    </div>
+
+</div>
+{% endblock content %}

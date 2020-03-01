@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+	<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css')}}">
+
+
+<title>Page Title</title>
+</head>
+<body>
+
+
+<div class="row" style = "margin-bottom: 15px; margin-top: 15px">
+	<div class="col-sm-3">
+	</div>
+	<div class="col-sm-6">
+		<h1 align=" center"> Urban perception study</h1>
+	</div>
+	<div class="col-sm-3">
+	</div>
+</div>
+<div class="row justify-content-center" style = "margin-bottom: 15px; margin-top: 15px">
+	<div style="font-size: 8px">created by qianhuil@mit.edu</div>
+</div>
+<div class="row justify-content-center" style = "margin-bottom: 15px; margin-top: 15px">
+
+	<p>In this study, you will be shown 5 short videos, please pick up the scene that you think is livelier. And give three reasons</p>
+
+</div>
+<div class="row" style = "margin-bottom: 15px; margin-top: 15px">
+
+	<div class="col-sm-3">
+	</div>
+	<div class="col-sm-6">
+		<form method="POST" action="">
+			<div style = "font-size:20px; font-weight:bold; margin-left:150px">				
+				{{form.Gender.label}}<br>
+				{{form.Gender}}
+				{{form.Address.label}}<br>
+				{{form.Address}}<br>
+				{{form.Background.label}}<br>
+				{{form.Background}}
+
+				<br>
+				<br>
+				{{form.submit}}
+			
+				
+			</div>
+		</form>
+	</div>
+	<div class="col-sm-3">
+	</div>
+</div>
+
+
+
+</body>
+</html>

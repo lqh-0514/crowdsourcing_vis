@@ -1,0 +1,237 @@
+{% extends "layout.html" %}
+
+{% block nav %}
+{% endblock %}
+
+{% block content %}
+<div class="content-section">
+
+    <!-- <div class="col-sm-10 ">
+        <h2>哪一个街区更有活力?</h2>
+    </div>
+    <div class="col-sm-1">
+        <div class="hide">test</div>
+    </div>
+    <div class="col-sm-1">
+        <div class="hide">test</div>
+    </div> -->
+
+    <div class="col-sm-8">
+        <p>加载可能稍有延迟，感谢您的耐心等待</p>
+    </div>
+    <div class="col-sm-2">
+        <div class="hide">test</div>
+    </div>
+    <div class="col-sm-2">
+        <div class="hide">test</div>
+    </div>
+    <div class="row justify-content-center" style = "margin-bottom: 10px; margin-top: 10px"></div>
+
+    <div class="col-sm-8">
+        <p>您将看到两个街区的模型场景，<strong><span style="color: #7b1c1c">想象这些体块是街道旁边的建筑物</span></strong>，您可以在窗口内鼠标<strong><span style="color: #7b1c1c">拖拽</span></strong>改变视角、用键盘<strong><span style="color: #7b1c1c">上下左右小范围走动</span>
+            </strong></p>若用手机端/平板打开，可用手拖拽改变视角，点击前进。
+    </div>
+    <div class="col-sm-2">
+        <div class="hide">test</div>
+    </div>
+    <div class="col-sm-2">
+        <div class="hide">test</div>
+    </div>
+    <div class="col-sm-8">
+        <p>点击 <span style = "font-size:35px">&#8656;</span> :左；  <span style = "font-size:35px">=</span>：相同； <span style = "font-size:35px">&#8658;</span>：右 进行选择</p>
+    </div>
+    <div class="col-sm-2">
+        <div class="hide">test</div>
+    </div>
+    <div class="col-sm-2">
+        <div class="hide">test</div>
+    </div>
+
+
+    <div class="col-sm-8">
+        <p  style="color: #7b1c1c; font-size:24px"><strong>如果是您，会喜欢在哪条街道活动？</strong></p>
+    </div>
+    <div class="col-sm-2">
+        <div class="hide">test</div>
+    </div>
+    <div class="col-sm-2">
+        <div class="hide">test</div>
+    </div>
+<!-- show the webvr -->
+    <div class="row" style="margin-bottom: 15px; margin-top: 15px">
+        <div class="col">
+            <iframe id="left-model" style="width: 100%" height="300" src="/vrmodel_1" allowfullscreen="" webkitallowfullscreen=""
+                mozallowfullscreen="" allow="gyroscope; accelerometer; xr"></iframe>
+        </div>
+
+        <div class="col-sm-1">
+            <center>
+                <div class="row justify-content-center" style="margin-bottom: 15px; margin-top: 15px">
+                    <form action="/left_click/" method="post">
+                        <div id="left_arrow_model" class="choice_button">⬅</div>
+                    </form>
+                </div>
+            </center>
+            <center>
+                <div class="row justify-content-center" style="margin-bottom: 15px; margin-top: 15px">
+                    <form action="/equal_click/" method="post">
+                        <div align="center" id="equal_model" class="choice_button">=</div>
+                    </form>
+                </div>
+            </center>
+            <center>
+                <div class="row justify-content-center" style="margin-bottom: 15px; margin-top: 15px">
+                    <form action="/right_click/" method="post">
+                        <div align="center" id="right_arrow_model" class="choice_button">⬅</div>
+                    </form>
+                </div>
+            </center>
+        </div>
+        <div class="col">
+            <iframe id="right-model" style="width: 100%" height="300" src="/vrmodel_2" allowfullscreen="" webkitallowfullscreen=""
+                mozallowfullscreen="" allow="gyroscope; accelerometer; xr"></iframe>
+        </div>
+    </div>
+<!-- direction words -->
+    <div class="row" style="margin-bottom: 15px; margin-top: 15px">
+        <div class="col-sm-8">
+            <p id="comment3" class="hide">您的选择是: <span id="mySelection"  style="color: #7b1c1c;font-size:20px;font-weight: bolder;" ></span></p>
+            <p id="comment" class="hide"> <strong>·</strong>接下来您将看到上面两个街区的全景视频，视频特意拍于外出低频时段。您可以在
+                窗口内<strong><span style="color: #7b1c1c">拖拽，了解更多细节</span></strong></p>
+        </div>
+        <div class="col-sm-2 text-center" >
+        </div>
+        <div class="col-sm-2 text-center">           
+        </div>
+        <div class="col-sm-8">
+            <p id="comment-2" class="hide">点击 <span style = "font-size:35px">&#8656;</span> :左；  <span style = "font-size:35px">=</span>：相同； <span style = "font-size:35px">&#8658;</span>：右 进行选择</p>
+        </div>
+        <div class="col-sm-2 text-center" >
+        </div>
+    
+        <div class="col-sm-2 text-center">
+            
+        </div>
+    </div>
+    <div class="row" style="margin-bottom: 15px; margin-top: 15px">
+        <div class="col-sm-8">
+            <p id = "comment6" class = "hide" style="color: #7b1c1c; font-size:24px"><strong>如果是您，会喜欢在哪条街道活动？</strong></p>
+            <p id = "comment7" class= "hide">（"活动"不包括驾车经过）</p>
+
+        </div>
+        <div class="col-sm-2 text-center" >
+        </div>
+    
+        <div class="col-sm-2 text-center">
+            
+        </div>
+    </div>
+
+<!-- load video after select the webvr -->
+    <div class="row" style="margin-bottom: 15px; margin-top: 15px">
+        <div class="col">
+            <!-- <center><video controls autoplay loop width="480" height="360" controls>
+          <source src={{video_s1}} type="video/mp4"></video></center> -->
+            <iframe id="left-video" onload="onVideoFrameLoad('left')" style="width: 100%" height="300" src="/rendervideo_1" allowfullscreen="" webkitallowfullscreen=""
+                mozallowfullscreen="" allow="gyroscope; accelerometer; xr" class="hide"></iframe>
+        </div>
+
+        <div class="col-sm-1">
+            <center>
+                <div class="row justify-content-center" style="margin-bottom: 15px; margin-top: 15px">
+                    <form action="/left_click/" method="post">  
+                        <!-- shall i remove this  -->
+                        <!--  -->
+                        <div id="left_arrow" class="choice_button hide">⬅</div>
+                    </form>
+                </div>
+            </center>
+            <center>
+                <div class="row justify-content-center" style="margin-bottom: 15px; margin-top: 15px">
+                    <form action="/equal_click/" method="post">
+                        <div align="center" id="equal" class="choice_button hide">=</div>
+                    </form>
+                </div>
+            </center>
+            <center>
+                <div class="row justify-content-center" style="margin-bottom: 15px; margin-top: 15px">
+                    <form action="/right_click/" method="post">
+                        <div align="center" id="right_arrow" class="choice_button hide">⬅</div>
+                    </form>
+                </div>
+            </center>
+        </div>
+        <div class="col">
+            <iframe id="right-video" onload="onVideoFrameLoad('right')" style="width: 100%" height="300" src="/rendervideo_2" allowfullscreen="" webkitallowfullscreen=""
+                mozallowfullscreen="" allow="gyroscope; accelerometer; xr" class="hide"></iframe>
+        </div>
+    </div>
+
+    <div class="row justify-content-center" style="margin-bottom: 15px; margin-top: 15px">
+        <div class="col-sm-8">
+            <p id="comment5" class="hide">您的选择是: <span id="mySelection2"  style="color: #7b1c1c;font-size:20px;font-weight: bolder;" ></span></p>
+        </div>
+        <div class="col-sm-2 text-center" >
+        </div>
+        <div class="col-sm-2 text-center">           
+        </div>
+        <div class="padded-container" style="width: 100%">
+            <form method="POST" action="">
+
+                <div class="row">
+                    
+                    <style>
+                        .hide {
+                            display: none;
+                        }
+
+                        .spacer {
+                            width: 100%;
+                            height: 1px;
+                        }
+
+                        .glow {
+                            box-shadow: 0 0 10px rgb(118, 0, 0);
+                        }
+                        .corner {
+                            position: absolute; top: 10; left: 10; opacity: 0; width: 1px; height: 1px
+                        }
+                        .corner-2 {
+                            position: absolute; top: 20; left: 10; opacity: 0; width: 1px; height: 1px
+                        }
+                    </style>
+
+                    <div class="col-sm-5">
+                        <div id="form-col-left" class="hide">
+                            {{ form.text_left(class="form-control corner")}}
+                            {{ form.text_left_video(class="form-control corner-2")}}
+
+                        </div>
+                    </div>
+
+                    <div class="col-sm-2"></div>
+                    <!-- form on right side -->
+                    <div class="col-sm-5">
+                        <div id="form-col-right" class="hide">
+                             {{ form.text_right(class="form-control corner") }}
+                             {{ form.text_right_video(class="form-control corner-2")}}
+                        </div>
+                    </div>
+
+
+                </div>
+
+
+                <div class="form-row" style="display: flex; justify-content: center">
+                    <div id="submitter" class="form-group hide">
+                        {{ form.submit(class="btn btn-outline-info") }}
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script src="../static/js/191jquery.min.js"></script>
+<script src="/static/js/video-ui.js"></script>
+{% endblock content %}

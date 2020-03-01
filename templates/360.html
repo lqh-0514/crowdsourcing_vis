@@ -1,0 +1,41 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>videojs-vr Demo</title>
+  <link href="../static/video-js.css" rel="stylesheet">
+  <link href="../static/videojs-vr.css" rel="stylesheet">
+  <div id="drag"></div>
+  <style type="text/css">
+    body {
+      margin: 0;
+    }
+  </style>
+</head>
+
+<body>
+  <video style="width: 100%" height="300" id="videojs-vr-player" class="video-js vjs-default-skin" crossorigin="anonymous" autoplay loop>
+    <!-- how to pass the video_path from videos.html into this html -->
+    <source src={{video_dir}} type="video/mp4">
+    <!-- how to pass the video_path from videos.html into this html -->
+
+  </video>
+  <script src="../static/video.js"></script>
+  <script src="../static/videojs-vr.js"></script>
+  <script src="/static/js/video-ui.js"></script>
+  <script src="../static/js/191jquery.min.js"></script>
+  <script>
+
+    (function (window, videojs) {
+      var player = window.player = videojs('videojs-vr-player');
+      player.mediainfo = player.mediainfo || {};
+      player.mediainfo.projection = '360';
+      // AUTO is the default and looks at mediainfo
+      var vr = window.vr = player.vr({ projection: 'AUTO', debug: true, forceCardboard: false });
+    }(window, window.videojs));
+
+  </script>
+</body>
+
+</html>

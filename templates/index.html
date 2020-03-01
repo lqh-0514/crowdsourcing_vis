@@ -1,0 +1,169 @@
+{% extends "layout.html" %}
+
+{% block nav %}
+{% endblock %}
+
+{% block content %}
+<div class="container">
+
+    <div class="row" style = "margin-bottom: 15px; margin-top: 15px">
+        <div class="col-sm-3">
+        </div>
+        <div class="col-sm-6">
+            <h1 align=" center"> </h1>
+        </div>
+        <div class="col-sm-3">
+        </div>
+    </div>
+    <div class="row justify-content-center" style = "margin-bottom: 15px; margin-top: 15px">
+        <div style="font-size: 10px">若有任何建议或报错，请邮件qianhuil@mit.edu，或微信’liang-0514‘</div>
+    </div>
+    <div class="row justify-content-center" style = "margin-bottom: 5px; margin-top: 15px">
+        <style>
+            #tmall {
+                max-width: 20%;
+                  }
+        </style>
+        <img src="static/tmall.jpeg" id="tmall"></img>
+
+    </div>
+    <div class="row justify-content-center" style = "margin-bottom:15px; margin-top: 0px">
+        <p>问卷末尾可参与抽取10张百元天猫超市礼品卡!</p>
+
+    </div>
+    <div class="row justify-content-center" style = "margin-top: 15px">        
+        <p>本问卷共12题，您将看到24处上海的街区场景，分别以模型场景和全景视频的方式展示。您可随意拖拽场景、视频以了解更多街区信息。
+            请在每两处场景中，选出您<strong></strong>更喜欢活动</strong>的一处。视频与场景模型的加载可能会存在延迟，请耐心等待，非常感谢您的参与！</p>
+        <p>为了保证场景能正常渲染，请使用Chrome（推荐）/火狐/Edge</p>
+    </div>
+
+    <div class="row" style = "margin-bottom: 15px; margin-top: 15px">
+
+        <div class="col-sm-3">
+        </div>
+        <div class="col-sm-6" >
+            <form method="POST" action="">
+                {{ form.hidden_tag() }}
+                <div class="form-group">
+                    <b>{{ form.Gender.label(class="form-control-label form-control-lg") }}</b>
+                    {% if form.Gender.errors %}
+                    {{ form.Gender(class="form-control form-control-lg is-invalid") }}
+                    <div class="invalid-feedback">
+                        {% for error in form.Gender.errors %}
+                            <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                    {% else %}
+                        {{ form.Gender(class="form-control form-control-lg") }}
+                    {% endif %}
+                </div>
+
+                <div class="form-group">
+                    <b>{{ form.Age.label(class="form-control-label form-control-lg") }}</b>
+                    {% if form.Age.errors %}
+                    {{ form.Age(class="form-control form-control-lg is-invalid") }}
+                    <div class="invalid-feedback">
+                        {% for error in form.Age.errors %}
+                            <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                    {% else %}
+                        {{ form.Age(class="form-control form-control-lg") }}
+                    {% endif %}
+                </div>
+
+                <div class="form-group">
+                    <b>{{ form.Address.label(class="form-control-label form-control-lg") }}</b>
+                    {% if form.Address.errors %}
+                    {{ form.Address(class="form-control form-control-lg is-invalid") }}
+                    <div class="invalid-feedback">
+                        {% for error in form.Address.errors %}
+                            <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                    {% else %}
+                        {{ form.Address(class="form-control form-control-lg") }}
+                    {% endif %}
+                </div>
+
+                <div class="form-group">
+                    <b>{{ form.Background.label(class="form-control-label form-control-lg") }}</b>
+                    {% if form.Background.errors %}
+                    {{ form.Background(class="form-control form-control-lg is-invalid") }}
+                    <div class="invalid-feedback">
+                        {% for error in form.Background.errors %}
+                            <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                    {% else %}
+                        {{ form.Background(class="form-control form-control-lg") }}
+                    {% endif %}
+                </div>
+                <div class="form-group">
+                    <b>{{ form.text.label(class="form-control-label form-control-lg") }}</b>
+                </div>
+                <b>选择因素1</b>
+                <div class="form-group">
+                    {% if form.properties_1.errors %}
+                    {{ form.properties_1(class="form-control  form-control-lg is-invalid") }}
+                    <div class="invalid-feedback">
+                        {% for error in form.properties_1.errors %}
+                        <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                    {% else %}
+                    {{ form.properties_1(class="form-control form-control-lg ") }}
+                    {% endif %}
+                </div>
+                <b>选择因素2</b>
+                <div class="form-group">
+                    {% if form.properties_2.errors %}
+                    {{ form.properties_2(class="form-control form-control-lg is-invalid") }}
+                    <div class="invalid-feedback">
+                        {% for error in form.properties_2.errors %}
+                        <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                    {% else %}
+                    {{ form.properties_2(class="form-control  form-control-lg") }}
+                    {% endif %}
+                </div>
+                <b>选择因素3</b>
+                <div class="form-group">
+                    {% if form.properties_3.errors %}
+                    {{ form.properties_3(class="form-control form-control-lg is-invalid") }}
+                    <div class="invalid-feedback">
+                        {% for error in form.properties_3.errors %}
+                        <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                    {% else %}
+                    {{ form.properties_3(class="form-control form-control-lg ") }}
+                    {% endif %}
+                </div>
+
+
+
+                <div class="form-row" style="display: flex; justify-content: center">
+                    <div id="index-submitter" >
+                        <style>
+                            #img {
+                                max-width: 60%;
+                                  }
+                        </style>
+                        <img src="static/start.png" id='img' onmouseover="" style="cursor: pointer;">
+                    </div>
+                    <div id="submit" class="form-group" style="position: absolute; top: 0; left: 0; opacity: 0; width: 1px; height: 1px">
+                        {{ form.submit(class="btn btn-outline-info") }}
+                    </div>
+                </div>
+
+            </form>        
+        </div>
+        <div class="col-sm-3">
+        </div>
+    </div>
+
+<script src="/static/js/index-ui.js"></script>
+
+{% endblock content %}
