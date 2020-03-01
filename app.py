@@ -1,5 +1,5 @@
 from flask import Flask
-from flask import Flask, render_template, url_for, flash, redirect, request, g,send_from_directory,session
+from flask import Flask, render_template, url_for, flash, redirect, request, g,send_from_directory,session,json
 # from falsk_sqlalchemy import falsk_sq
 from forms import UserForm, PropertyForm, ConfirmForm
 from wtforms import TextField, IntegerField, TextAreaField, SubmitField, RadioField,SelectField
@@ -8,7 +8,7 @@ import random
 import os
 import sqlite3
 import uuid
-import jsonify
+# import jsonify
 from dbTest import connect_db, get_db
 app = Flask(__name__)
 app.secret_key = 'development key'
@@ -25,48 +25,54 @@ def close_db(error):
         g.postgres_db_conn.close()
 
 ######## load info page ######################
-@app.route("/landing_page",methods=['GET','POST'])
+@app.route("/",methods=['GET','POST'])
 def landing_page():
+    # data = {}
+    # data_dir = os.path.join(os.getcwd(),'static','landing_page')
+    # mapname = os.path.join(data_dir,'base_map.geojson')
+    # with open(mapname) as mapfile:
+    #     base_map = json.load(mapfile)
+    # print(base_map)
+    # ratingname = os.path.join(data_dir,'street_rating.geojson')
+    # with open (ratingname) as ratingfile:
+    #     rating_map = json.load(ratingfile)
+    # data['basemap'] = base_map
+    # data['rating'] = rating_map
+    return render_template('landing_page.html')
 
+# @app.route("/", methods=['GET','POST'])
+# def homepage():
+#     db = get_db()
+#     form = UserForm()
+#     idx=0
+#     if request.method == "POST":
+#         # flash('yeah','success')
+#         if form.validate_on_submit():
+#            # ip = request.remote_addr
+#             user_id = str(uuid.uuid4())
+#             gender = '0' if form.Gender.data == 'F' else '1' #0-female. 1-male
+#             age = form.Age.data
+#             address = '0' if form.Address.data == 'F' else '1'   # 0-nonlocal 1-local
+#             background = '0' if form.Background.data == 'F' else '1' # 0 -nonpro  1 -pro
+#             properties_1 = form.properties_1.data
+#             properties_2 = form.properties_2.data
+#             properties_3 = form.properties_3.data
+#             session['user_id'] = user_id
+#             session['gender'] = gender
+#             session['age'] = age
+#             session['address'] = address
+#             session['background'] = background
+#             session['idx'] = 0
+#             session['properties_1'] = properties_1
+#             session['properties_2'] = properties_2
+#             session['properties_3'] = properties_3
+#             # db.execute("""insert into user_main(user_id, gender, age, address,background) values (%s, %s, %s, %s, %s)""",[user_id, gender, age, address,background])
+#             db.execute("""insert into user_main_2(user_id, gender, age, address,background,properties_1,
+#             properties_2,properties_3) values (%s, %s, %s, %s, %s, %s, %s, %s)""",(user_id, gender, age, 
+#             address, background, properties_1, properties_2, properties_3))
+#             return redirect(url_for('videos'))
 
-
-
-
-
-
-@app.route("/", methods=['GET','POST'])
-def homepage():
-    db = get_db()
-    form = UserForm()
-    idx=0
-    if request.method == "POST":
-        # flash('yeah','success')
-        if form.validate_on_submit():
-           # ip = request.remote_addr
-            user_id = str(uuid.uuid4())
-            gender = '0' if form.Gender.data == 'F' else '1' #0-female. 1-male
-            age = form.Age.data
-            address = '0' if form.Address.data == 'F' else '1'   # 0-nonlocal 1-local
-            background = '0' if form.Background.data == 'F' else '1' # 0 -nonpro  1 -pro
-            properties_1 = form.properties_1.data
-            properties_2 = form.properties_2.data
-            properties_3 = form.properties_3.data
-            session['user_id'] = user_id
-            session['gender'] = gender
-            session['age'] = age
-            session['address'] = address
-            session['background'] = background
-            session['idx'] = 0
-            session['properties_1'] = properties_1
-            session['properties_2'] = properties_2
-            session['properties_3'] = properties_3
-            # db.execute("""insert into user_main(user_id, gender, age, address,background) values (%s, %s, %s, %s, %s)""",[user_id, gender, age, address,background])
-            db.execute("""insert into user_main_2(user_id, gender, age, address,background,properties_1,
-            properties_2,properties_3) values (%s, %s, %s, %s, %s, %s, %s, %s)""",(user_id, gender, age, 
-            address, background, properties_1, properties_2, properties_3))
-            return redirect(url_for('videos'))
-
-    return render_template('index.html', title='User info',form = form, index = idx)
+#     return render_template('index.html', title='User info',form = form, index = idx)
 
 
 #########render video_l ############
