@@ -23,7 +23,7 @@ var tileServer = "https://tilecache.kairo.at/mapnik/";
 
 window.onload = function() {
   // Load location presets and subdialog.
-  fetch(presetsFile_l)
+  fetch(basemapJSON)
   .then((response) => {
 
     if (response.ok) {
