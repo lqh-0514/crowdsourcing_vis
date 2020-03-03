@@ -4,6 +4,13 @@
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 	<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css')}}">
 
+    <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no" />
+<script src="https://api.mapbox.com/mapbox-gl-js/v1.8.1/mapbox-gl.js"></script>
+<link href="https://api.mapbox.com/mapbox-gl-js/v1.8.1/mapbox-gl.css" rel="stylesheet" />
+<style>
+	body { margin: 0; padding: 0; }
+	#map { position: absolute; top: 0; bottom: 0; width: 100%; }
+</style>
 
 <title>Page Title</title>
 </head>
@@ -23,15 +30,78 @@
         <script src="https://unpkg.com/aframe-extras/dist/aframe-extras.controls.min.js"></script>
         <script src="https://unpkg.com/aframe-extras/dist/aframe-extras.pathfinding.min.js"></script><!-- errors on controls if not present? -->
         <script src="https://unpkg.com/osmtogeojson/osmtogeojson.js"></script>
-        <script src="/static/js/map_A.js"></script>
-        <!-- <script src="/static/js/position-limit.js"></script> -->
-        <script src="/static/js/conversions_A.js"></script>
-        <script src="/static/js/tiles_A.js"></script>
-        <script src="/static/js/buildings_A.js"></script>
+        
     <h1 class="title">StreetScape Vis</h1>
     <div id="graphButtons">
       <button type="button" class="utility-button" id="foldGraphDiv">Select Two Streets</button>
       <!-- <button type="button" class="utility-button" id="normalizeBar">DENORMALIZE BAR GRAPH</button> -->
     </div>
+
+    <div id="map"></div>
+    <script>
+        mapboxgl.accessToken = 'pk.eyJ1Ijoid21qcGlsbG93IiwiYSI6ImNrN2JldzdpbDA2Ym0zZXFzZ3oydXN2ajIifQ.qPOZDsyYgMMUhxEKrvHzRA';
+    var map = new mapboxgl.Map({
+    style: 'mapbox://styles/mapbox/light-v10',
+    center: [74.0066, 40.7135],
+    zoom: 15.5,
+    pitch: 45,
+    bearing: -17.6,
+    container: 'map',
+    antialias: true
+    });
+     
+    // The 'building' layer in the mapbox-streets vector source contains building-height
+    // data from OpenStreetMap.
+    map.on('load', function() {
+    // Insert the layer beneath any symbol layer.
+    var layers = map.getStyle().layers;
+     
+    var labelLayerId;
+    for (var i = 0; i < layers.length; i++) {
+    if (layers[i].type === 'symbol' && layers[i].layout['text-field']) {
+    labelLayerId = layers[i].id;
+    break;
+    }
+    }
+     
+    map.addLayer(
+    {
+    'id': '3d-buildings',
+    'source': 'composite',
+    'source-layer': 'building',
+    'filter': ['==', 'extrude', 'true'],
+    'type': 'fill-extrusion',
+    'minzoom': 15,
+    'paint': {
+    'fill-extrusion-color': '#aaa',
+     
+    // use an 'interpolate' expression to add a smooth transition effect to the
+    // buildings as the user zooms in
+    'fill-extrusion-height': [
+    'interpolate',
+    ['linear'],
+    ['zoom'],
+    15,
+    0,
+    15.05,
+    ['get', 'height']
+    ],
+    'fill-extrusion-base': [
+    'interpolate',
+    ['linear'],
+    ['zoom'],
+    15,
+    0,
+    15.05,
+    ['get', 'min_height']
+    ],
+    'fill-extrusion-opacity': 0.6
+    }
+    },
+    labelLayerId
+    );
+    });
+    </script>
+
 </body>
 </html>
